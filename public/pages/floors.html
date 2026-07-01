@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tatvarth Heights | Floor Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700&amp;family=Fraunces:opsz,wght@9..144,300;400;500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#96ccff",
+                    "on-secondary-fixed": "#001d32",
+                    "outline-variant": "#c4c7c7",
+                    "surface-tint": "#5f5e5e",
+                    "secondary": "#076399",
+                    "on-tertiary-container": "#87837e",
+                    "surface-container": "#efeeeb",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#7fc1fd",
+                    "surface-dim": "#dbdad7",
+                    "on-surface-variant": "#444748",
+                    "outline": "#747878",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#000000",
+                    "surface-container-highest": "#e3e2e0",
+                    "tertiary-container": "#1d1b17",
+                    "surface-bright": "#faf9f6",
+                    "on-secondary-container": "#004f7c",
+                    "inverse-surface": "#2f312f",
+                    "surface-variant": "#e3e2e0",
+                    "tertiary-fixed": "#e7e2db",
+                    "primary-fixed": "#e5e2e1",
+                    "primary": "#000000",
+                    "inverse-primary": "#c8c6c5",
+                    "on-secondary": "#ffffff",
+                    "surface": "#faf9f6",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "on-primary-fixed-variant": "#474746",
+                    "secondary-fixed": "#cee5ff",
+                    "on-tertiary-fixed": "#1d1b17",
+                    "on-primary-fixed": "#1c1b1b",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f1f1ee",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e9e8e5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#494742",
+                    "on-primary-container": "#858383",
+                    "background": "#faf9f6",
+                    "tertiary-fixed-dim": "#cac6bf",
+                    "on-background": "#1a1c1a",
+                    "surface-container-low": "#f4f3f1",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#004a76",
+                    "on-surface": "#1a1c1a",
+                    "primary-container": "#1c1b1b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "160px",
+                    "unit": "8px",
+                    "margin-mobile": "24px",
+                    "margin-desktop": "80px",
+                    "gutter": "32px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "display-xl": ["Fraunces"],
+                    "display-xl-mobile": ["Fraunces"],
+                    "headline-md": ["Fraunces"],
+                    "headline-lg": ["Fraunces"],
+                    "headline-lg-mobile": ["Fraunces"],
+                    "label-technical": ["IBM Plex Mono"],
+                    "label-caps": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "30px", "fontWeight": "400"}],
+                    "display-xl": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "300"}],
+                    "display-xl-mobile": ["44px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "300"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "400"}],
+                    "label-technical": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .floor-link.active {
+            color: #000000;
+        }
+        .floor-link.active::before {
+            content: "→";
+            position: absolute;
+            left: -24px;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #faf9f6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c4c7c7;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden selection:bg-secondary-fixed-dim selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-3xl border-b border-outline-variant/20 flex justify-between items-center px-margin-desktop py-8">
+<div class="font-headline-md text-headline-md uppercase tracking-widest text-primary">Aethelgard Pavilion</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Architecture</a>
+<a class="font-body-md text-body-md text-primary border-b border-tertiary-fixed-dim pb-1" href="#">Spaces</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Amenities</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Timeline</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Location</a>
+</div>
+<button class="px-8 py-3 bg-primary text-on-primary font-label-caps uppercase transition-all hover:bg-secondary">Inquire</button>
+</nav>
+<main class="pt-32 min-h-screen">
+<!-- Hero Section: Clinical Directory -->
+<section class="px-margin-desktop mb-24 grid grid-cols-12 gap-gutter">
+<div class="col-span-12 md:col-span-8">
+<h1 class="font-display-xl text-display-xl mb-4">Clinical Directory</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    Navigating the intersection of precision medicine and holistic wellness. Each floor is a curated environment designed for clinical excellence and patient serenity.
+                </p>
+</div>
+<div class="col-span-12 md:col-span-4 flex items-end justify-end">
+<div class="text-right">
+<span class="font-label-technical text-label-technical block uppercase text-outline mb-2">Current Project</span>
+<span class="font-label-caps text-label-caps block">Tatvarth Heights Wellness Center</span>
+</div>
+</div>
+</section>
+<!-- Floor Explorer Interactive Section -->
+<section class="px-margin-desktop mb-section-gap">
+<div class="grid grid-cols-12 gap-gutter border-t border-outline-variant/20 pt-12">
+<!-- Left Nav: Floor Index -->
+<aside class="col-span-12 md:col-span-3 lg:col-span-2">
+<div class="sticky top-40 flex flex-col gap-6">
+<span class="font-label-technical text-label-technical uppercase tracking-widest text-outline mb-4">Index / Navigation</span>
+<div class="flex flex-col gap-4">
+<button class="floor-link relative text-left font-label-technical text-label-technical uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" onclick="switchFloor(4)">Level 04 <span class="block text-[10px] lowercase text-outline tracking-normal font-normal">Executive Suites</span></button>
+<button class="floor-link relative text-left font-label-technical text-label-technical uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" onclick="switchFloor(3)">Level 03 <span class="block text-[10px] lowercase text-outline tracking-normal font-normal">Diagnostic Imaging</span></button>
+<button class="floor-link active relative text-left font-label-technical text-label-technical uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" onclick="switchFloor(2)">Level 02 <span class="block text-[10px] lowercase text-outline tracking-normal font-normal">Wellness &amp; Consult</span></button>
+<button class="floor-link relative text-left font-label-technical text-label-technical uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" onclick="switchFloor(1)">Level 01 <span class="block text-[10px] lowercase text-outline tracking-normal font-normal">Arrival Lobby</span></button>
+<button class="floor-link relative text-left font-label-technical text-label-technical uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" onclick="switchFloor(0)">Level G <span class="block text-[10px] lowercase text-outline tracking-normal font-normal">Foundation &amp; Tech</span></button>
+</div>
+</div>
+</aside>
+<!-- Center/Right: Render & Details -->
+<div class="col-span-12 md:col-span-9 lg:col-span-10">
+<!-- Main Render -->
+<div class="relative aspect-[16/9] w-full overflow-hidden bg-surface-container mb-12" id="floor-visual">
+<img class="w-full h-full object-cover transition-opacity duration-700" data-alt="A hyper-realistic architectural render of a minimalist wellness consultation room at Tatvarth Heights. Large floor-to-ceiling windows reveal a soft, misty garden. The interior features smooth travertine walls, light oak cabinetry, and brushed brass fixtures. A single ergonomic sculptural chair sits in the center of a spacious, light-filled room. The lighting is soft and diffuse, creating a clinical yet deeply calming atmosphere in shades of stone and cream." id="floor-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt-gH_PMIVvx7WVi1qkHCEnMrWtqJb7SzBnEcTpXdkz08b9F-T6V7SkOV4FfZixy0Us4aehnjUnyBBCLT8ZrnytrM9GWooSZW1a7BW8_b4Vy26_RuaaYlbYj-5TXylHy63WOBDl-T-Wz3ChP3Pr2hS3BQTAtUi7Yz55G0dDUzPCBd7mfypKQrsE4sLlAkwhXorTVl1MMeSRivikCYLKVPtbDXFmgwEsQF10_MzHPfoylJicwkl7XA9iysuhZixBmLlhHFCZP3-JEWk"/>
+<div class="absolute bottom-8 right-8 bg-white/10 backdrop-blur-md px-6 py-4 flex items-center gap-4">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+<span class="font-label-technical text-label-technical text-white uppercase tracking-widest">Architectural Visualization 2.04</span>
+</div>
+</div>
+<!-- Floor Data: Bento Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Data -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-12">
+<div>
+<h2 class="font-headline-lg text-headline-lg mb-4" id="floor-title">Level 02: Wellness &amp; Consult</h2>
+<p class="font-body-md text-body-md text-on-surface-variant" id="floor-description">Dedicated to quiet recovery and personalized healthcare consultations. This level prioritizes acoustic privacy and rhythmic natural lighting to reduce patient anxiety.</p>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<div>
+<span class="font-label-technical text-label-technical uppercase text-outline block mb-1">Total Floor Area</span>
+<span class="font-label-caps text-label-caps text-lg tracking-wider" id="floor-area">12,450 SQ FT</span>
+</div>
+<div>
+<span class="font-label-technical text-label-technical uppercase text-outline block mb-1">Ceiling Height</span>
+<span class="font-label-caps text-label-caps text-lg tracking-wider">4.2 METERS</span>
+</div>
+</div>
+</div>
+<!-- Right Data: Departments & Materials -->
+<div class="col-span-12 lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Department List -->
+<div class="bg-surface-container-low p-8 border border-outline-variant/10">
+<span class="font-label-technical text-label-technical uppercase text-outline block mb-6">Clinical Departments</span>
+<ul class="space-y-4" id="floor-deps">
+<li class="flex items-center justify-between border-b border-outline-variant/20 pb-2">
+<span class="font-body-md">Oncology Consultation</span>
+<span class="font-label-technical text-[10px] text-outline">SEC. A</span>
+</li>
+<li class="flex items-center justify-between border-b border-outline-variant/20 pb-2">
+<span class="font-body-md">Holistic Therapy Wing</span>
+<span class="font-label-technical text-[10px] text-outline">SEC. B</span>
+</li>
+<li class="flex items-center justify-between border-b border-outline-variant/20 pb-2">
+<span class="font-body-md">Patient Lounge</span>
+<span class="font-label-technical text-[10px] text-outline">SEC. C</span>
+</li>
+</ul>
+</div>
+<!-- Material Palette -->
+<div class="bg-surface-container-low p-8 border border-outline-variant/10">
+<span class="font-label-technical text-label-technical uppercase text-outline block mb-6">Material Palette</span>
+<div class="flex flex-wrap gap-4" id="floor-materials">
+<div class="group flex flex-col items-center">
+<div class="w-12 h-12 bg-[#EFEAE3] border border-outline-variant/30 mb-2"></div>
+<span class="font-label-technical text-[9px] uppercase">Travertine</span>
+</div>
+<div class="group flex flex-col items-center">
+<div class="w-12 h-12 bg-[#B19363] border border-outline-variant/30 mb-2"></div>
+<span class="font-label-technical text-[9px] uppercase">Brass</span>
+</div>
+<div class="group flex flex-col items-center">
+<div class="w-12 h-12 bg-[#6E5940] border border-outline-variant/30 mb-2"></div>
+<span class="font-label-technical text-[9px] uppercase">Oak</span>
+</div>
+<div class="group flex flex-col items-center">
+<div class="w-12 h-12 bg-[#F6F4EF] border border-outline-variant/30 mb-2"></div>
+<span class="font-label-technical text-[9px] uppercase">Polished Plaster</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Specs / Asymmetric Layout -->
+<section class="px-margin-desktop py-section-gap bg-surface-container overflow-hidden">
+<div class="grid grid-cols-12 gap-gutter items-center">
+<div class="col-span-12 lg:col-span-5 order-2 lg:order-1">
+<h3 class="font-headline-lg text-headline-lg mb-8 leading-tight">Structural Integrity &amp; Sound Architecture</h3>
+<div class="space-y-8">
+<div class="flex gap-6">
+<span class="font-label-technical text-primary text-xl">01</span>
+<div>
+<h4 class="font-body-lg font-bold mb-2">Acoustic Shielding</h4>
+<p class="text-on-surface-variant font-body-md">Triple-layered partition walls and sound-absorptive materials ensure that patient privacy is held to the highest architectural standards.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="font-label-technical text-primary text-xl">02</span>
+<div>
+<h4 class="font-body-lg font-bold mb-2">Dynamic Air Filtration</h4>
+<p class="text-on-surface-variant font-body-md">Integrated HEPA-14 medical-grade ventilation systems hidden within the recessed cove ceilings for sterile aesthetics.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="font-label-technical text-primary text-xl">03</span>
+<div>
+<h4 class="font-body-lg font-bold mb-2">Biophilic Integration</h4>
+<p class="text-on-surface-variant font-body-md">Every consultation room is oriented to maximize circadian-aligned lighting and views of the exterior landscaping.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-6 lg:offset-1 order-1 lg:order-2 mb-12 lg:mb-0">
+<div class="relative">
+<div class="absolute -top-12 -left-12 w-48 h-48 border border-outline-variant/30 z-0"></div>
+<div class="relative z-10 bg-white p-4 shadow-sm">
+<img class="w-full grayscale brightness-95" data-alt="A detailed architectural blueprint and floor plan of a clinical wing at Tatvarth Heights. The drawing is clean with thin black lines on a cream background, showing room partitions, furniture layouts, and technical annotations. It looks like a high-end technical drawing for a premium medical facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSc_pvQOIySebGqmENaOooiWn-vxsMGKOEaJ6XAmvbVgtNj7uHK7ye5n00-OmyXWB4IJv4svHrW6AsVhQtbVnyFItF_WrPWP-OBjOTb-icb6knDgPlJEiz5f8MiGW72AyhXYsuAcMBjKJTuxddZos3Lxh_0-Kp1Ua0UVQSwZ4fbDRCfJYJA2Hp3ttbAlIPmXAupi9bRdFQj-_eN6o7oA0fpq2OsTtckb3HflR1Jd_GsHNFciN5dCbfwx_nRxAO5LEzoo8QdNbI0ZIg"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-tertiary-container border-t border-outline-variant/20 grid grid-cols-12 gap-gutter px-margin-desktop py-section-gap w-full">
+<div class="col-span-12 md:col-span-4 mb-12 md:mb-0">
+<div class="font-headline-lg text-headline-lg text-primary mb-8">Tatvarth<br/>Heights</div>
+<p class="font-label-technical text-label-technical text-on-surface-variant max-w-xs">
+                Designing spaces that breathe. A collaborative effort between modern medicine and classical architectural principles.
+            </p>
+</div>
+<div class="col-span-6 md:col-span-2">
+<span class="font-label-technical text-label-technical text-outline uppercase block mb-6">Project</span>
+<ul class="space-y-4">
+<li><a class="font-label-technical text-on-surface hover:text-secondary transition-colors" href="#">Architectural Credits</a></li>
+<li><a class="font-label-technical text-on-surface hover:text-secondary transition-colors" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div class="col-span-6 md:col-span-2">
+<span class="font-label-technical text-label-technical text-outline uppercase block mb-6">Legal</span>
+<ul class="space-y-4">
+<li><a class="font-label-technical text-on-surface hover:text-secondary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="font-label-technical text-on-surface hover:text-secondary transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="col-span-12 md:col-span-4 mt-12 md:mt-0 flex flex-col justify-between items-end">
+<div class="flex gap-4">
+<span class="w-10 h-10 border border-outline-variant/20 flex items-center justify-center hover:bg-primary hover:text-white transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</span>
+<span class="w-10 h-10 border border-outline-variant/20 flex items-center justify-center hover:bg-primary hover:text-white transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</span>
+</div>
+<span class="font-label-technical text-label-technical text-on-surface-variant">© 2024 Aethelgard Pavilion. All rights reserved.</span>
+</div>
+</footer>
+<script>
+        const floorData = {
+            0: {
+                title: "Level G: Foundation & Tech",
+                desc: "The nerve center of the pavilion. Houses the advanced filtration systems, structural support architecture, and technical imaging vaults.",
+                area: "18,200 SQ FT",
+                deps: ["Central HVAC Control", "Bio-Tech Lab", "Server Core"],
+                materials: ["Concrete", "Brushed Steel", "Glass"],
+                img: "A wide-angle interior architectural shot of a minimalist subterranean lab space. The floors are polished gray concrete, and the walls are semi-translucent frosted glass. Modern white laboratory equipment is neatly arranged. Cool, clinical blue-tinted lighting creates a high-tech atmosphere."
+            },
+            1: {
+                title: "Level 01: Arrival Lobby",
+                desc: "A transition space from the external world to clinical calm. Features a double-height ceiling and massive stone volumes.",
+                area: "15,800 SQ FT",
+                deps: ["Concierge Reception", "Cafeteria & Lounge", "Pharmacy Suite"],
+                materials: ["White Marble", "Oak", "Bronze"],
+                img: "A grand, minimalist lobby of a high-end wellness center. The space features massive white marble columns and a soaring ceiling. Soft sunlight streams in from high clerestory windows. There is a sculptural wood reception desk and lush green indoor trees. The mood is peaceful and luxurious."
+            },
+            2: {
+                title: "Level 02: Wellness & Consult",
+                desc: "Dedicated to quiet recovery and personalized healthcare consultations. This level prioritizes acoustic privacy and rhythmic natural lighting.",
+                area: "12,450 SQ FT",
+                deps: ["Oncology Consultation", "Holistic Therapy Wing", "Patient Lounge"],
+                materials: ["Travertine", "Brass", "Oak", "Polished Plaster"],
+                img: "A serene consultation room with travertine walls and oak floors. A large window looks out onto a minimalist courtyard. The furniture is mid-century modern in style, and the lighting is warm and indirect. The atmosphere is clinical yet cozy and professional."
+            },
+            3: {
+                title: "Level 03: Diagnostic Imaging",
+                desc: "High-precision environments for advanced radiology and diagnostics. Surfaces are sterile, seamless, and designed for medical efficiency.",
+                area: "14,100 SQ FT",
+                deps: ["MRI Suite", "CT Scanning", "Consultation Rooms"],
+                materials: ["White Corian", "Steel", "Linoleum"],
+                img: "A high-end diagnostic imaging corridor with seamless white walls and bright, even ceiling light panels. The flooring is a soft gray medical-grade material. Doors to the MRI suites are heavy and soundproofed. The aesthetic is ultra-clean, modern, and clinical."
+            },
+            4: {
+                title: "Level 04: Executive Suites",
+                desc: "Premium patient recovery suites with residential comfort. Features private balconies and bespoke interior finishes.",
+                area: "10,200 SQ FT",
+                deps: ["Private Recovery A", "Private Recovery B", "Medical Staff Hub"],
+                materials: ["Walnut", "Silk Panels", "Limestone"],
+                img: "A luxury hospital suite that feels like a five-star hotel room. It features warm walnut wood paneling, soft upholstered silk wall panels, and a large private balcony with a view of a city park. The medical equipment is discreetly hidden behind panels. The lighting is warm and ambient."
+            }
+        };
+
+        function switchFloor(id) {
+            const data = floorData[id];
+            
+            // UI Updates
+            document.querySelectorAll('.floor-link').forEach(link => link.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Image Fade Effect
+            const img = document.getElementById('floor-image');
+            img.style.opacity = '0';
+            
+            setTimeout(() => {
+                img.setAttribute('data-alt', data.img);
+                // In a real scenario, we'd update src here, but we use placeholders.
+                // We'll update text content
+                document.getElementById('floor-title').innerText = data.title;
+                document.getElementById('floor-description').innerText = data.desc;
+                document.getElementById('floor-area').innerText = data.area;
+                
+                // Update departments
+                const depsContainer = document.getElementById('floor-deps');
+                depsContainer.innerHTML = data.deps.map(dep => `
+                    <li class="flex items-center justify-between border-b border-outline-variant/20 pb-2">
+                        <span class="font-body-md">${dep}</span>
+                        <span class="font-label-technical text-[10px] text-outline">SEC. ${String.fromCharCode(65 + Math.floor(Math.random() * 5))}</span>
+                    </li>
+                `).join('');
+
+                img.style.opacity = '1';
+            }, 300);
+        }
+
+        // Simple parallax on scroll for header
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const nav = document.querySelector('nav');
+            if (scrolled > 50) {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-8');
+            } else {
+                nav.classList.add('py-8');
+                nav.classList.remove('py-4');
+            }
+        });
+    </script>
+</body></html>
