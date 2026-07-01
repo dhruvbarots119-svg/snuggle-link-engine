@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tatvarth Heights - Floor Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;400&amp;family=IBM+Plex+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container": "#efeeeb",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#f1f1ee",
+                      "on-surface": "#1a1c1a",
+                      "primary": "#000000",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e3e2e0",
+                      "surface-container-high": "#e9e8e5",
+                      "tertiary": "#000000",
+                      "tertiary-container": "#1d1b17",
+                      "tertiary-fixed-dim": "#cac6bf",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#004f7c",
+                      "secondary-container": "#7fc1fd",
+                      "primary-fixed-dim": "#c8c6c5",
+                      "on-surface-variant": "#444748",
+                      "outline": "#747878",
+                      "on-tertiary-fixed": "#1d1b17",
+                      "on-primary-fixed-variant": "#474746",
+                      "on-primary": "#ffffff",
+                      "on-primary-fixed": "#1c1b1b",
+                      "error": "#ba1a1a",
+                      "on-tertiary-container": "#87837e",
+                      "on-secondary-fixed-variant": "#004a76",
+                      "on-secondary-fixed": "#001d32",
+                      "on-tertiary-fixed-variant": "#494742",
+                      "secondary-fixed-dim": "#96ccff",
+                      "primary-container": "#1c1b1b",
+                      "tertiary-fixed": "#e7e2db",
+                      "surface-container-highest": "#e3e2e0",
+                      "inverse-primary": "#c8c6c5",
+                      "error-container": "#ffdad6",
+                      "secondary": "#076399",
+                      "surface-dim": "#dbdad7",
+                      "on-primary-container": "#858383",
+                      "background": "#faf9f6",
+                      "surface-bright": "#faf9f6",
+                      "surface": "#faf9f6",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#1a1c1a",
+                      "secondary-fixed": "#cee5ff",
+                      "surface-container-low": "#f4f3f1",
+                      "outline-variant": "#c4c7c7",
+                      "inverse-surface": "#2f312f",
+                      "surface-tint": "#5f5e5e",
+                      "primary-fixed": "#e5e2e1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "32px",
+                      "margin-mobile": "24px",
+                      "unit": "8px",
+                      "section-gap": "160px",
+                      "margin-desktop": "80px"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-xl": [
+                              "Fraunces"
+                      ],
+                      "label-technical": [
+                              "IBM Plex Mono"
+                      ],
+                      "headline-lg": [
+                              "Fraunces"
+                      ],
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-xl-mobile": [
+                              "Fraunces"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Fraunces"
+                      ],
+                      "headline-md": [
+                              "Fraunces"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-xl": [
+                              "72px",
+                              {
+                                      "lineHeight": "80px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "300"
+                              }
+                      ],
+                      "label-technical": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.08em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-xl-mobile": [
+                              "44px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "300"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "30px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "38px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for the floor list but allow scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl dark:bg-transparent border-b border-outline/20 transition-all duration-500 ease-in-out">
+<div class="flex justify-between items-center w-full px-margin-desktop py-6 max-md:px-margin-mobile">
+<div class="font-headline-md text-headline-md text-primary dark:text-inverse-on-surface tracking-tight">
+                Tatvarth Heights
+            </div>
+<!-- Desktop Navigation -->
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-technical text-label-technical text-on-surface-variant dark:text-on-surface-variant/70 hover:text-primary dark:hover:text-inverse-on-surface transition-colors duration-300" href="#">Architecture</a>
+<a class="font-label-technical text-label-technical text-primary dark:text-inverse-on-surface border-b border-primary dark:border-inverse-on-surface pb-1 hover:text-primary dark:hover:text-inverse-on-surface transition-colors duration-300" href="#">Spaces</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant dark:text-on-surface-variant/70 hover:text-primary dark:hover:text-inverse-on-surface transition-colors duration-300" href="#">Amenities</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant dark:text-on-surface-variant/70 hover:text-primary dark:hover:text-inverse-on-surface transition-colors duration-300" href="#">Timeline</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant dark:text-on-surface-variant/70 hover:text-primary dark:hover:text-inverse-on-surface transition-colors duration-300" href="#">Location</a>
+</div>
+<div class="hidden md:block">
+<button class="bg-primary text-on-primary px-6 py-3 font-label-technical text-label-technical uppercase tracking-widest hover:bg-on-surface-variant transition-colors duration-300 rounded-none">
+                    Inquire
+                </button>
+</div>
+<!-- Mobile Menu Toggle (Visual only for this mockup) -->
+<div class="md:hidden flex items-center">
+<span class="material-symbols-outlined text-primary text-2xl cursor-pointer" data-icon="menu">menu</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow pt-[120px] pb-section-gap w-full max-w-[1600px] mx-auto">
+<!-- Header Section -->
+<header class="px-margin-desktop max-md:px-margin-mobile mb-24 max-md:mb-12">
+<h1 class="font-display-xl text-display-xl max-md:font-display-xl-mobile max-md:text-display-xl-mobile text-primary mb-4">Clinical Directory</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Explore the structural layout of medical and wellness spaces within Tatvarth Heights. Select a level to view specific department allocations.
+            </p>
+</header>
+<!-- Floor Explorer Interactive Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop max-md:px-margin-mobile items-start">
+<!-- Left Column: Floor Navigation -->
+<div class="col-span-1 md:col-span-3 lg:col-span-2 border-t border-outline/20 pt-8 sticky top-[140px]">
+<span class="block font-label-technical text-label-technical text-on-surface-variant mb-8 uppercase tracking-widest">Select Level</span>
+<ul class="flex flex-row md:flex-col gap-4 overflow-x-auto no-scrollbar pb-4 md:pb-0" id="floor-list">
+<!-- Floor Items Injected via JS -->
+</ul>
+</div>
+<!-- Right Column: Content Display -->
+<div class="col-span-1 md:col-span-9 lg:col-span-10 grid grid-cols-1 lg:grid-cols-12 gap-gutter mt-12 md:mt-0">
+<!-- Main Image Area -->
+<div class="lg:col-span-8 bg-surface-container relative overflow-hidden aspect-[4/3] w-full group">
+<!-- Placeholder representing dynamic image loading based on floor selection -->
+<img class="w-full h-full object-cover absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100" data-alt="A striking, wide-angle architectural photograph of a modern, minimalist medical reception area. The space features large windows letting in bright natural light, pale oak wood paneling, and smooth concrete floors. The aesthetic is clean, sterile yet welcoming, resembling a high-end residential gallery rather than a traditional hospital. Sharp focus, deep depth of field, high key lighting." id="floor-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc9P2jt-OtdC1nMOGovKibkCt2aa0cEM4DhQ1mbBqdGfvmOLTl8O8jT8rlUTLB0XhacXJf-IyDLqkzoz3dBgx25zkPPLZ3gTx2ipDjyYek_q9gWyqX7MMpHWGBj-0aUOgffX95SlLWf243n_8wvy2oBAl8aIGNz0RR1j73cVYTojPnlt9FdytX4LEJO7aF9dw7D_BjMhGAE0epQQJePUgd2vHv6uW-Jn_Qsv8ku7XYzzia1Z4kenVMD37m7kixleYTxG3SDYKuRH8v"/>
+<div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-primary/50 to-transparent w-full">
+<span class="font-label-technical text-label-technical text-on-primary opacity-80" id="image-caption">Architectural view of Level G</span>
+</div>
+</div>
+<!-- Department Details Area -->
+<div class="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-outline/20 pt-8 lg:pt-0 lg:pl-8 flex flex-col justify-between">
+<div>
+<h2 class="font-headline-lg text-headline-lg max-md:font-headline-lg-mobile max-md:text-headline-lg-mobile text-primary mb-8" id="floor-title">Reception &amp; Triage</h2>
+<div class="space-y-4" id="department-list">
+<!-- Departments Injected via JS -->
+</div>
+</div>
+<div class="mt-12">
+<a class="inline-flex items-center gap-2 font-label-technical text-label-technical text-primary border-b border-primary pb-1 hover:text-on-surface-variant hover:border-on-surface-variant transition-colors" href="#">
+<span>View Detailed Blueprint</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-gap bg-surface-container dark:bg-surface-container-highest border-t border-outline/20">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop max-md:px-margin-mobile py-20 max-w-full mx-auto">
+<div class="md:col-span-4 lg:col-span-6 mb-12 md:mb-0">
+<div class="font-headline-lg text-headline-lg text-primary dark:text-on-surface mb-6">
+                    Tatvarth Heights
+                </div>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant max-w-sm">
+                    © 2024 Tatvarth Heights. All rights reserved. Structural Integrity &amp; Architectural Excellence.
+                </p>
+</div>
+<div class="md:col-span-8 lg:col-span-6 flex flex-col md:flex-row gap-12 md:justify-end">
+<div class="flex flex-col gap-4">
+<span class="font-label-technical text-label-technical text-on-surface mb-2">Legal</span>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-technical text-label-technical text-on-surface mb-2">Media</span>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity" href="#">Press Kit</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-opacity" href="#">Contact</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Interactive Logic -->
+<script>
+        // Mock Data representing structure from {{DATA:DOCUMENT:DOCUMENT_14}}
+        const floorData = [
+            {
+                level: '7',
+                title: 'Executive Suites & Research',
+                departments: ['01. Boardroom Alpha', '02. Clinical Research Lab', '03. Private Consultation', '04. Terrace Gardens'],
+                imagePrompt: 'A bright, expansive modern office space on a high floor overlooking a city skyline. Floor-to-ceiling glass windows, minimalist white desks, and subtle brushed steel accents. The environment feels high-end, quiet, and deeply professional. Architectural photography style, cinematic natural lighting.'
+            },
+            {
+                level: '6',
+                title: 'Surgical & Recovery',
+                departments: ['01. Operating Theater A', '02. Operating Theater B', '03. Post-Op Recovery', '04. Sterilization Unit'],
+                imagePrompt: 'A pristine, state-of-the-art medical recovery room designed with architectural minimalism. Soft, indirect lighting illuminates pale stone walls and advanced, streamlined medical equipment seamlessly integrated into the room structure. The feeling is calm, restorative, and highly technical. Wide angle, deep focus.'
+            },
+            {
+                level: '5',
+                title: 'Specialized Oncology',
+                departments: ['01. Infusion Center', '02. Specialist Consulting', '03. Patient Lounge', '04. Pharmacy Depot'],
+                imagePrompt: 'A tranquil medical patient lounge with a high-end residential aesthetic. Warm oak paneling, comfortable modern seating in neutral tones, and large windows bringing in soft daylight. The space feels healing, uncrowded, and meticulously designed to lower stress. Minimalist editorial photography style.'
+            },
+            {
+                level: '4',
+                title: 'Cardiology & Imaging',
+                departments: ['01. MRI Suite', '02. CT Scanning', '03. Cardiac Testing', '04. Physician Offices'],
+                imagePrompt: 'A minimalist corridor in a modern diagnostic clinic. The walls are a soft concrete grey, illuminated by precise linear LED strips embedded in the ceiling. The perspective draws the eye down the quiet hallway, emphasizing structural clean lines and an atmosphere of absolute precision and stillness.'
+            },
+            {
+                level: '3',
+                title: 'Pediatrics & Family Medicine',
+                departments: ['01. Waiting & Play Area', '02. Examination Rooms 1-8', '03. Vaccination Clinic'],
+                imagePrompt: 'A modern, sophisticated pediatric waiting area. Unlike typical bright childish colors, it uses a refined palette of soft muted pastels, natural wood structures, and ample white space. Geometric shapes are integrated into the architecture. The space feels safe, clean, and architecturally thoughtful. High key lighting.'
+            },
+            {
+                level: '2',
+                title: 'Outpatient Clinics',
+                departments: ['01. General Practice', '02. Dermatology', '03. ENT Specialists', '04. Phlebotomy'],
+                imagePrompt: 'A precise, minimalist examination room. A single sleek exam table sits center, surrounded by seamless built-in cabinetry in a soft stone color. There is no clutter. The lighting is bright, even, and clinical yet aesthetically pleasing, resembling a high-end wellness spa more than a standard hospital. Deep depth of field.'
+            },
+            {
+                level: '1',
+                title: 'Diagnostics & Labs',
+                departments: ['01. Pathology Lab', '02. Blood Bank', '03. Radiology Reading', '04. Staff Amenities'],
+                imagePrompt: 'A highly organized, cutting-edge pathology laboratory space. Endless rows of clean white benches, advanced machinery, and spotless concrete floors. The space is vast, emphasizing a sense of scale and clinical integrity. The lighting is cool, crisp, and shadowless, highlighting the technical nature of the work.'
+            },
+            {
+                level: 'G',
+                title: 'Main Reception & Emergency',
+                departments: ['01. Main Atrium & Triage', '02. Emergency Walk-in', '03. 24/7 Pharmacy', '04. Security Hub'],
+                imagePrompt: 'A striking, wide-angle architectural photograph of a modern, minimalist medical reception area. The space features large windows letting in bright natural light, pale oak wood paneling, and smooth concrete floors. The aesthetic is clean, sterile yet welcoming, resembling a high-end residential gallery rather than a traditional hospital. Sharp focus, deep depth of field, high key lighting.'
+            }
+        ];
+
+        let activeIndex = floorData.length - 1; // Default to Ground floor (last in array to order 7 down to G)
+
+        const floorListEl = document.getElementById('floor-list');
+        const floorTitleEl = document.getElementById('floor-title');
+        const departmentListEl = document.getElementById('department-list');
+        const floorImageEl = document.getElementById('floor-image');
+        const imageCaptionEl = document.getElementById('image-caption');
+
+        function renderList() {
+            floorListEl.innerHTML = '';
+            floorData.forEach((data, index) => {
+                const li = document.createElement('li');
+                const btn = document.createElement('button');
+                
+                // Style based on active state
+                const isActive = index === activeIndex;
+                const activeClasses = isActive 
+                    ? 'text-primary font-bold border-l-2 border-primary md:border-l-2 md:border-b-0 border-b-2 border-primary md:border-b-0 bg-surface-variant/30' 
+                    : 'text-on-surface-variant border-l-2 border-transparent md:border-b-0 border-b-2 border-transparent hover:text-primary hover:bg-surface-variant/10';
+
+                btn.className = `w-full text-left md:py-4 md:px-6 py-2 px-4 font-headline-md text-headline-md transition-all duration-300 flex items-center justify-between group ${activeClasses}`;
+                
+                btn.innerHTML = `
+                    <span>Level ${data.level}</span>
+                    <span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity text-[20px]" data-icon="arrow_right">arrow_right</span>
+                `;
+                
+                if (isActive) {
+                     btn.innerHTML = `
+                        <span>Level ${data.level}</span>
+                        <span class="material-symbols-outlined text-[20px]" data-icon="horizontal_rule">horizontal_rule</span>
+                    `;
+                }
+
+                btn.onclick = () => {
+                    activeIndex = index;
+                    updateContent();
+                    renderList(); // Re-render to update active classes
+                };
+
+                li.appendChild(btn);
+                floorListEl.appendChild(li);
+            });
+        }
+
+        function updateContent() {
+            const data = floorData[activeIndex];
+            
+            // Fade out
+            floorImageEl.style.opacity = '0.5';
+            departmentListEl.style.opacity = '0';
+            floorTitleEl.style.opacity = '0';
+
+            setTimeout(() => {
+                // Update text
+                floorTitleEl.textContent = data.title;
+                
+                // Update departments
+                departmentListEl.innerHTML = '';
+                data.departments.forEach(dept => {
+                    const div = document.createElement('div');
+                    div.className = 'border-b border-outline/20 pb-3 font-label-technical text-label-technical text-on-surface';
+                    div.textContent = dept;
+                    departmentListEl.appendChild(div);
+                });
+
+                // Update Image attributes (simulating image change)
+                floorImageEl.setAttribute('data-alt', data.imagePrompt);
+                imageCaptionEl.textContent = `Architectural view of Level ${data.level}`;
+
+                // Fade in
+                floorImageEl.style.opacity = '1';
+                departmentListEl.style.opacity = '1';
+                floorTitleEl.style.opacity = '1';
+                
+                // Add simple transition classes to elements if not present
+                departmentListEl.classList.add('transition-opacity', 'duration-500');
+                floorTitleEl.classList.add('transition-opacity', 'duration-500');
+
+            }, 300); // Wait for fade out
+        }
+
+        // Initialize
+        renderList();
+        updateContent();
+
+    </script>
+</body></html>
